@@ -22,6 +22,7 @@ class Parser:
         self.texts_limit = amounts["texts_limit"]
         self.max_limit_for_author = amounts["max_limit_for_author"]
         self.comment_look_through_limit = amounts["comment_look_through_limit"]
+        self.min_text_length = amounts["min_text_length"]
         self.authors = []
         self.authors_number = 0
         self.authors_with_ids_and_types = []
@@ -115,7 +116,7 @@ class Parser:
         for banned_word in self.banned_words:
             if banned_word in text:
                 return False
-        if text == "" or len(text) < 30:
+        if text == "" or len(text) < self.min_text_length:
             return False
         return True
 
