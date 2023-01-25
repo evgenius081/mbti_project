@@ -1,5 +1,6 @@
 import praw
 from configparser import ConfigParser
+from pathlib import Path
 
 
 class Parser:
@@ -13,25 +14,49 @@ class Parser:
             user_agent=user_info["user_agent"],
         )
         self.types = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
-        self.authors = []
-        self.authors_number = 0
-        self.authors_with_types = []
+        self.author_filename = "authors.txt"
+        self.text_filename = "texts.txt"
         self.banned_words = ["https://", "[removed]"]
         self.symbol_mapper = [["*", ""], ["\\", " "], ["|", ""], ["\n", " "], ["#", ""], ["\"", ""], ["  ", " "]]
-        self.read_authors = []
-        self.texts_limit = 500000
+        self.texts_limit = 200000
         self.max_limit_for_author = 30
+        self.comment_look_through_limit = 500000
+        self.authors = []
+        self.authors_number = 0
+        self.authors_with_ids_and_types = []
+        self.authors_and_ids = {}
+        self.read_authors = []
         self.lacking_types = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.text_count = 0
         self.stats = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
                       [0, 0], [0, 0], [0, 0], [0, 0]]
         self.type_limits = []
+        path_a = Path(self.author_filename)
+        path_t = Path(self.text_filename)
+        if not path_t.is_file():
+            f1 = open(self.text_filename, "x", encoding="UTF8")
+            f1.close()
+        if not path_a.is_file():
+            f2 = open(self.author_filename, "x", encoding="UTF8")
+            f2.close()
 
-    def get_posts_of_type(self, mbti_type):
-        for author in self.authors_with_types:
-            if author.split(":")[0] == mbti_type:
-                self.get_user_posts(author.split(":")[1], mbti_type)
-                self.get_user_comments(author.split(":")[1], mbti_type)
+    def get_users_texts(self):
+        for author_and_type in self.authors_with_ids_and_types:
+            author = author_and_type.split("|")[2]
+            mbti = author_and_type.split("|")[1]
+            if author not in self.read_authors:
+                try:
+                    self.get_user_comments(author, mbti)
+                    if self.text_count > self.texts_limit:
+                        break
+                    self.get_user_posts(author, mbti)
+                    if self.text_count > self.texts_limit:
+                        break
+                    print(f"Ended writing for user {author} with type {mbti}")
+                except Exception as e:
+                    print(f"Error occured with author {author}: {str(e)}")
+
+        print(f"Finished writing {self.text_count} texts.")
 
     def get_user_posts(self, username, mbti_type):
         submissions = self.reddit.redditor(username).submissions.new(limit=self.type_limits[self.types.index(mbti_type)])
@@ -42,19 +67,19 @@ class Parser:
         self.write_text(username, mbti_type, comments, "comment")
 
     def write_text(self, username, mbti_type, texts, text_type):
-        f = open("texts_with_types.txt", "a", encoding="UTF8")
+        f = open(self.text_filename, "a", encoding="UTF8")
         for text in texts:
             if self.text_count < self.texts_limit:
                 if text_type == "post":
                     txt = self.map_symbols(text.selftext)
                     if self.check_text(txt):
                         self.text_count += 1
-                        f.write(username+"|"+mbti_type+"|"+txt+"\n")
+                        f.write(str(self.authors_and_ids[username])+"|"+mbti_type+"|"+txt+"\n")
                 elif text_type == "comment":
                     txt = self.map_symbols(text.body)
                     if self.check_text(txt):
                         self.text_count += 1
-                        f.write(username+"|"+mbti_type+"|"+txt+"\n")
+                        f.write(str(self.authors_and_ids[username])+"|"+mbti_type+"|"+txt+"\n")
             else:
                 break
         f.close()
@@ -62,17 +87,20 @@ class Parser:
     def unify_authors(self):
         self.read_authors_from_file()
         new_authors = []
-        new_authors_with_types = []
+        new_authors_with_ids_and_types = []
+        new_authors_number = 0
         for author in self.authors:
             if author not in new_authors:
                 new_authors.append(author)
-                new_authors_with_types.append(self.authors_with_types[self.authors.index(author)])
+                new_authors_with_ids_and_types.append(self.authors_with_ids_and_types[self.authors.index(author)])
+                new_authors_number += 1
         self.authors = new_authors
-        self.authors_with_types = new_authors_with_types
+        self.authors_with_ids_and_types = new_authors_with_ids_and_types
+        self.authors_number = new_authors_number
 
     def write_authors_to_file(self):
-        f = open("authors_and_types.txt", "w", encoding="UTF8")
-        for author in self.authors_with_types:
+        f = open(self.author_filename, "w", encoding="UTF8")
+        for author in self.authors_with_ids_and_types:
             f.write(author+"\n")
         f.close()
 
@@ -81,24 +109,6 @@ class Parser:
         for pair in self.symbol_mapper:
             new_text = new_text.replace(pair[0], pair[1])
         return new_text
-
-    def get_users_texts(self):
-        for author_and_type in self.authors_with_types:
-            author = author_and_type.split(":")[1].replace("\n", "")
-            mbti = author_and_type.split(":")[0]
-            if author not in self.read_authors:
-                try:
-                    self.get_user_comments(author, mbti)
-                    if self.text_count > self.texts_limit:
-                        break
-                    self.get_user_posts(author, mbti)
-                    if self.text_count > self.texts_limit:
-                        break
-                    print(f"Ended writing for user {author} with type {mbti}")
-                except:
-                    print(f"Error occure with author {author}")
-
-        print(f"Finished writing {self.text_count} texts.")
 
     def check_text(self, text):
         for banned_word in self.banned_words:
@@ -109,23 +119,25 @@ class Parser:
         return True
 
     def read_authors_from_file(self):
-        f = open("authors_and_types.txt", "r", encoding="UTF8")
+        f = open(self.author_filename, "r", encoding="UTF8")
         self.authors = []
-        self.authors_with_types = []
+        self.authors_with_ids_and_types = []
         counter = 0
         for line in f:
-            self.authors.append(line.split(":")[1].replace("\n", ""))
-            self.authors_with_types.append(line.replace("\n", ""))
+            self.authors.append(line.split("|")[2].replace("\n", ""))
+            self.authors_and_ids[line.split("|")[2].replace("\n", "")] = line.split("|")[0]
+            self.authors_with_ids_and_types.append(line.replace("\n", ""))
             counter += 1
         self.authors_number = counter
         f.close()
 
     def read_read_authors_from_file(self):
-        f = open("texts_with_types.txt", "r", encoding="UTF8")
+        f = open(self.text_filename, "r", encoding="UTF8")
         for line in f:
-            txt = line.split("|")[0].replace("\n", "")
-            if txt not in self.read_authors:
-                self.read_authors.append(txt)
+            if len(line) > 4:
+                author = list(self.authors_and_ids.keys())[list(self.authors_and_ids.values()).index(line.split("|")[0])]
+                if author not in self.read_authors:
+                    self.read_authors.append(author)
         f.close()
 
     def check_type(self, text):
@@ -136,23 +148,21 @@ class Parser:
 
     def get_users_with_flairs_from_comments(self, subreddit_name):
         subreddit = self.reddit.subreddit(subreddit_name)
-        counter = 0
         self.read_authors_from_file()
-        f = open("authors_and_types.txt", "a")
-        for comment in subreddit.comments(limit=500000):
+        f = open(self.author_filename, "a")
+        for comment in subreddit.comments(limit=self.comment_look_through_limit):
             id = self.check_type(comment.author_flair_text)
             if id != -1:
                 if str(comment.author) not in self.authors:
-                    counter += 1
-                    print(str(self.types[id]) + ":" + str(comment.author))
+                    self.authors_number += 1
+                    print(str(self.types[id]) + "|" + str(comment.author))
                     self.authors.append(comment.author)
-                    self.authors_with_types.append(self.types[id]+":"+str(comment.author)+"\n")
-                    f.write(self.types[id]+":"+str(comment.author)+"\n")
-        self.authors_number += counter
+                    self.authors_with_ids_and_types.append(self.types[id]+"|"+str(comment.author)+"\n")
+                    f.write(str(self.authors_number) + "|" + self.types[id]+"|"+str(comment.author)+"\n")
         f.close()
 
     def clear_file_with_texts(self):
-        f = open("texts_with_types.txt", "r", encoding="UTF8")
+        f = open(self.text_filename, "r", encoding="UTF8")
         texts = []
         counter = 0
         for line in f:
@@ -165,7 +175,7 @@ class Parser:
                 counter += 1
         f.close()
 
-        f = open("texts_with_types.txt", "w", encoding="UTF8")
+        f = open(self.text_filename, "w", encoding="UTF8")
         for text in texts:
             f.write(text)
         f.close()
@@ -176,15 +186,15 @@ class Parser:
             self.type_limits.append(max([i[0] for i in self.stats]) * self.max_limit_for_author / stat[0])
 
     def count_text_stat(self):
-        f = open("texts_with_types.txt", "r", encoding="UTF8")
+        f = open(self.text_filename, "r", encoding="UTF8")
         for line in f:
             self.stats[self.types.index(line.split("|")[1])][1] += 1
         f.close()
 
     def count_author_stat(self):
-        f = open("authors_and_types.txt", "r", encoding="UTF8")
+        f = open(self.author_filename, "r", encoding="UTF8")
         for line in f:
-            self.stats[self.types.index(line.split(":")[0])][0] += 1
+            self.stats[self.types.index(line.split("|")[1])][0] += 1
         f.close()
 
     def display_author_text_stat(self):
