@@ -18,9 +18,10 @@ class Parser:
         self.text_filename = "texts.txt"
         self.banned_words = ["https://", "[removed]"]
         self.symbol_mapper = [["*", ""], ["\\", " "], ["|", ""], ["\n", " "], ["#", ""], ["\"", ""], ["  ", " "]]
-        self.texts_limit = 200000
-        self.max_limit_for_author = 30
-        self.comment_look_through_limit = 500000
+        amounts = config_object["AMOUNTS"]
+        self.texts_limit = amounts["texts_limit"]
+        self.max_limit_for_author = amounts["max_limit_for_author"]
+        self.comment_look_through_limit = amounts["comment_look_through_limit"]
         self.authors = []
         self.authors_number = 0
         self.authors_with_ids_and_types = []
