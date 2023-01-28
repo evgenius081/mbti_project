@@ -12,7 +12,7 @@ Project requirments:
 2. run `pip install praw`
 3. create file `config.ini` and place there following code
 
-  ```
+  ```ini
   [AUTH_INFO]
   client_id = <your reddit client id>
   client_secret = <your reddit client secret>
