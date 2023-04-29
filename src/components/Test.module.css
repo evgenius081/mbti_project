@@ -1,0 +1,74 @@
+.test{
+    width: 100%;
+}
+
+.test_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.user_name{
+    width: 40%;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #fff;
+    outline: none;
+    font-size: 18px;
+    text-align: center;
+    z-index: 2;
+    color: #fff;
+    font-family: myRegular, serif;
+}
+
+.placeholder{
+    position: absolute;
+    top: 10px;
+    font-family: myRegular, serif;
+}
+
+.send {
+    font-family: myRegular, serif;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background: #0b0c10;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+}
+.send:hover{
+    color: #F27C22;
+    border: 1px solid #F27C22;
+}
+
+@media screen and (max-width: 700px){
+    .user_name{
+        width: 60%;
+    }
+}
+
+@media screen and (max-device-width: 700px){
+    .user_name{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .user_name{
+        width: 80%;
+    }
+}
+
+@media screen and (max-device-width: 500px){
+    .user_name{
+        width: 80%;
+    }
+}

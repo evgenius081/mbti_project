@@ -1,0 +1,159 @@
+.main{
+    width: 100%;
+    height: 100%;
+    padding: 0 10% 30px 10%;
+}
+
+.h1{
+    width: 100%;
+    font-family: myRegular, serif;
+    font-size: 48px;
+}
+
+h1 span{
+    font-family: myBold, serif;
+}
+
+.letters_procents{
+    width: 100%;
+    padding: 50px 0;
+}
+
+.letter_procents{
+    width: 100%;
+}
+
+.letter_names{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.letter_name{
+    font-size: 24px;
+    font-family: myBold, serif;
+}
+
+.letter_bar_wrapper{
+    width: 100%;
+    background: #1f2833;
+    height: 10px;
+    margin: 15px 0 20px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.letter_bar_wrapper::after{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    top: -5px;
+    background: #fff;
+    left: calc(50% - 1px)
+}
+
+.ei_letter_bar{
+    position: absolute;
+    background: linear-gradient(45deg, #58009F 0%, #DD2EDE 100%);
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
+    top:0
+}
+
+.si_letter_bar{
+    position: absolute;
+    background: linear-gradient(45deg, #0DFF6E 0%, #FFFF98 100%);
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
+    top:0
+}
+
+.tf_letter_bar{
+    position: absolute;
+    background: linear-gradient(45deg, #F2771A 0%, #F6BF2D 100%);
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
+    top:0
+}
+
+.jp_letter_bar{
+    position: absolute;
+    background: linear-gradient(45deg, #006BD2 0%, #0DB7FF 100%);
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
+    top:0
+}
+
+.type_description_p{
+    font-size: 18px;
+    font-family: myRegular, serif;
+    line-height: 1.35em;
+}
+
+.personalities_link{
+    margin-top: 20px
+}
+
+.personalities_link_p{
+    font-size: 18px;
+}
+
+.personalities_link_a{
+    font-size: 18px;
+    color: #F27C22;
+    font-family: myBold, serif;
+}
+
+@media screen and (max-device-width: 400px){
+    .letter_procents{
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .letter_names{
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100px;
+        width: 100%
+    }
+
+    .letter_name:nth-child(2){
+        margin-left: auto;
+    }
+
+    .letter_bar_wrapper{
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .letter_procents{
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .letter_names{
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100px;
+        width: 100%
+    }
+
+    .letter_name:nth-child(2){
+        margin-left: auto;
+    }
+
+    .letter_bar_wrapper{
+        position: absolute;
+    }
+}

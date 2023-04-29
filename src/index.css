@@ -1,0 +1,176 @@
+@font-face {
+  font-family: myBold;
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: myRegular;
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: myThin;
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-Light.ttf);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0b0c10;
+}
+
+*{
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.accent{
+  color: #F27C22;
+}
+
+#root{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b0c10;
+  padding-top: 70px;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  background-clip: content-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #F27C22;
+}
+
+main{
+  width: 100%
+}
+
+
+@media screen and (max-device-width: 350px){
+  #root{
+    padding-top: 150px;
+  }
+}
+
+@media screen and (max-width: 350px){
+  #root{
+    padding-top: 150px;
+  }
+}
+
+
+
+.error{
+  width: 80%
+}
+
+.error-header{
+  height: 67vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-internal-header{
+  background: linear-gradient(
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0.6)
+  ), url("../public/img/500.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.error-not-found-header{
+  background: linear-gradient(
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0.6)
+  ), url("../public/img/404.png") center no-repeat;
+  background-size: cover;
+}
+
+.error-header h1{
+  color: #f44336;
+  text-align: center;
+  font-size: 96px;
+  font-family: myBold, serif;
+  width: 100%;
+}
+
+.error-text{
+  text-align: center;
+  padding: 30px 0;
+  width: 100%;
+  font-size: 18px;
+}
+
+.error-text a{
+  color: #F27C22;
+}
+
+@media screen and (max-device-width: 600px) {
+  .error-header h1{
+    font-size: 72px;
+  }
+
+  .error-header{
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .error-header h1{
+    font-size: 72px;
+  }
+
+  .error-header{
+    height: 40vh;
+  }
+}
+
+@media screen and (max-device-width: 460px) {
+  .error-header h1{
+    font-size: 48px;
+  }
+
+  .error-header{
+    height: 30vh;
+  }
+}
+
+
+@media screen and (max-width: 460px) {
+  .error-header h1{
+    font-size: 48px;
+  }
+
+  .error-header{
+    height: 30vh;
+  }
+}
+
