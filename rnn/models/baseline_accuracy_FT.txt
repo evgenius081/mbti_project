@@ -1,0 +1,6 @@
+*** F/T TEST SET CLASSIFICATION (POSTS) ***
+Total posts classified: 43844
+Accuracy: 0.5797828665267768
+Confusion matrix: 
+[[17236,  7620],
+ [10804,  8184]]
