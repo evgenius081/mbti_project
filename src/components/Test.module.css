@@ -11,6 +11,45 @@
     position: relative;
 }
 
+.type_choose{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 30%;
+    width: 100%;
+}
+
+.type_choose p:nth-child(2){
+    margin: 0 5px;
+    font-size: 12px;
+}
+
+.type_choose p{
+    color: #b3b3b3;
+}
+
+.type_choose p:not(:nth-child(2)){
+    cursor: pointer;
+}
+
+.type_choose .chosen_type{
+    color: #fff
+}
+
+.textarea{
+    min-width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #fff;
+    outline: none;
+    font-size: 14px;
+    z-index: 2;
+    color: #fff;
+    font-family: myRegular, serif;
+    min-height: 150px;
+}
+
 .user_name{
     width: 40%;
     height: 40px;
@@ -26,9 +65,17 @@
     font-family: myRegular, serif;
 }
 
-.placeholder{
+.placeholder_user{
     position: absolute;
     top: 10px;
+    font-family: myRegular, serif;
+}
+
+.placeholder_text{
+    position: absolute;
+    top: 10px;
+    left: calc(30% + 10px);
+    font-size: 14px;
     font-family: myRegular, serif;
 }
 
@@ -50,25 +97,57 @@
 }
 
 @media screen and (max-width: 700px){
-    .user_name{
+    .user_name, .textarea{
         width: 60%;
+    }
+
+    .type_choose{
+        padding: 10px 20%;
+    }
+
+    .placeholder_text{
+        left: calc(20% + 12px);
     }
 }
 
 @media screen and (max-device-width: 700px){
-    .user_name{
+    .user_name, .textarea{
         width: 60%;
+    }
+
+    .type_choose{
+        padding: 10px 20%;
+    }
+
+    .placeholder_text{
+        left: calc(20% + 12px);
     }
 }
 
 @media screen and (max-width: 500px){
-    .user_name{
+    .user_name, .textarea{
         width: 80%;
+    }
+
+    .type_choose{
+        padding: 10px 10%;
+    }
+
+    .placeholder_text{
+        left: calc(10% + 12px);
     }
 }
 
 @media screen and (max-device-width: 500px){
-    .user_name{
+    .user_name, .textarea{
         width: 80%;
+    }
+
+    .type_choose{
+        padding: 10px 10%;
+    }
+
+    .placeholder_text{
+        left: calc(10% + 12px);
     }
 }
