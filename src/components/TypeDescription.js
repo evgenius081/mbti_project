@@ -14,6 +14,8 @@ export function TypeDescription(){
     let type_percents = Object.values(mbtiTypes).map(value => Object.values(value))
         .map(value => value[1] / (value[0] + value[1]) * 50)
 
+    console.log(mbtiTypes)
+
     useEffect(() => {
         const types = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP",
             "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
@@ -41,8 +43,8 @@ export function TypeDescription(){
                 </article>
                 <article className={styles.letter_procents}>
                     <div className={styles.letter_names}>
-                        <p className={styles.letter_name}>Sensing</p>
                         <p className={styles.letter_name}>iNtuition</p>
+                        <p className={styles.letter_name}>Sensing</p>
                     </div>
                     <div className={styles.letter_bar_wrapper}>
                         <div style={{left:type_percents[1]+"%"}}
@@ -63,8 +65,8 @@ export function TypeDescription(){
                 </article>
                 <article className={styles.letter_procents}>
                     <div className={styles.letter_names}>
-                        <p className={styles.letter_name}>Perceiving</p>
                         <p className={styles.letter_name}>Judging</p>
+                        <p className={styles.letter_name}>Perceiving</p>
                     </div>
                     <div className={styles.letter_bar_wrapper}>
                         <div style={{left:type_percents[3]+"%"}}

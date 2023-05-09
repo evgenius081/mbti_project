@@ -91,9 +91,16 @@
     transition: all 0.4s ease;
 
 }
+
 .send:hover{
     color: #F27C22;
     border: 1px solid #F27C22;
+}
+
+.send:disabled{
+    color: #b3b3b3;
+    border-color: #b3b3b3;
+    cursor: default;
 }
 
 @media screen and (max-width: 700px){

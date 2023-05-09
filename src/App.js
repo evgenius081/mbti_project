@@ -7,6 +7,7 @@ import {NavMenu} from "./components/NavMenu";
 import {Test} from "./components/Test";
 import {TypeDescription} from "./components/TypeDescription";
 import {Context} from "./context"
+import {About} from "./components/About";
 
 function App() {
     const [mbtiTypes, setMbtiTypes] = useState({"IE": [0, 0], "NS": [0, 0],
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path='types/test' element={<Test />} />
                 <Route exact path='/error' element={<InternalError />}/>
                 <Route exact path='/not-found' element={<NotFound />}/>
+                <Route exact path='/about' element={<About />} />
                 <Route exact path='/types/:type' element={<TypeDescription/>}/>
                 <Route path='*' element={<NotFound />} />
             </Routes>

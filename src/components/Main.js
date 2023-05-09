@@ -1,12 +1,18 @@
 import React from "react"
 
 import styles from "./Main.module.css"
+import {Link} from "react-router-dom";
 export function Main(){
     return (
         <>
             <header className={styles.header}>
-                <h1 className={styles.h1}>Let's learn ourselves <span className="accent">better</span></h1>
-                <section className={styles.header_section}>
+                <section className={styles.header_description}>
+                    <h1 className={styles.h1}>Let's learn ourselves <span className="accent">better</span></h1>
+                    <p>Basing on your <span className="accent">Reddit</span> activity and armed with <span className="accent">AI</span>
+                        , we can help you to understand your personality better.</p>
+                    <Link to={"/about"}>About us</Link>
+                </section>
+                <section className={styles.header_types}>
                     <article className={styles.header_section_article}>
                         <img src={"/img/2.svg"} alt={"extroversion and introversion"}/>
                         <p className={styles.eitypes_first_type_option}>Extroversion</p>

@@ -8,9 +8,29 @@
     padding: 0 10%;
 }
 
-.h1{
+.header_description{
     width: 40%;
+}
+
+.h1{
+    width: 100%;
     font-size: 72px;
+}
+
+.header_description p{
+    font-family: myThin, serif;
+    font-size: 18px;
+    padding: 20px 0;
+}
+
+.header_description a{
+    font-family: myThin, serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.header_description a:hover{
+    color: #F27C22;
 }
 
 .header_a{
@@ -25,7 +45,7 @@
     cursor: pointer;
 }
 
-.header_section{
+.header_types{
     display: flex;
     width: 540px;
     flex-wrap: wrap;
