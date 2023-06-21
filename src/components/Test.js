@@ -51,10 +51,10 @@ export function Test(){
                     if (response.ok){
                         let data = await response.json()
                         setMbtiTypes(data)
-                        let primaryType = data["IE"][0] > data["IE"][1] ? "i" : "e"
-                        primaryType += data["NS"][0] > data["NS"][1] ? "n" : "s"
-                        primaryType += data["TF"][0] > data["TF"][1] ? "t" : "f"
-                        primaryType += data["JP"][0] > data["JP"][1] ? "j" : "p"
+                        let primaryType = data["IE"][0] >= data["IE"][1] ? "i" : "e"
+                        primaryType += data["NS"][0] >= data["NS"][1] ? "n" : "s"
+                        primaryType += data["TF"][0] >= data["TF"][1] ? "t" : "f"
+                        primaryType += data["JP"][0] >= data["JP"][1] ? "j" : "p"
                         setUserDisabled(false)
                         navigate("/types/"+primaryType)
                     }

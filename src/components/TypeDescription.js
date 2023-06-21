@@ -10,11 +10,8 @@ export function TypeDescription(){
     let navigate = useNavigate()
     const {mbtiTypes} = useContext(Context);
 
-
     let type_percents = Object.values(mbtiTypes).map(value => Object.values(value))
-        .map(value => value[1] / (value[0] + value[1]) * 50)
-
-    console.log(mbtiTypes)
+        .map(value => (value[1] / (value[0] + value[1])) * 50)
 
     useEffect(() => {
         const types = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP",
@@ -47,7 +44,7 @@ export function TypeDescription(){
                         <p className={styles.letter_name}>Sensing</p>
                     </div>
                     <div className={styles.letter_bar_wrapper}>
-                        <div style={{left:type_percents[1]+"%"}}
+                        <div style={{left:type_percents[2]+"%"}}
                              className={styles.si_letter_bar}>
                         </div>
                     </div>
@@ -58,7 +55,7 @@ export function TypeDescription(){
                         <p className={styles.letter_name}>Feeling</p>
                     </div>
                     <div className={styles.letter_bar_wrapper}>
-                        <div style={{left:type_percents[2]+"%"}}
+                        <div style={{left:type_percents[3]+"%"}}
                              className={styles.tf_letter_bar}>
                         </div>
                     </div>
@@ -69,7 +66,7 @@ export function TypeDescription(){
                         <p className={styles.letter_name}>Perceiving</p>
                     </div>
                     <div className={styles.letter_bar_wrapper}>
-                        <div style={{left:type_percents[3]+"%"}}
+                        <div style={{left:type_percents[1]+"%"}}
                              className={styles.jp_letter_bar}></div>
                     </div>
                 </article>
