@@ -1,0 +1,50 @@
+.nav{
+    position:fixed;
+    background: #0b0c10;
+    top:0;
+    height: 70px;
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo_a{
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    font-family: myRegular, serif;
+}
+
+.test_button{
+    text-decoration: none;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    font-family: myRegular, serif;
+}
+.test_button:hover{
+    border-color: #F27C22;
+    color: #F27C22;
+}
+
+@media screen and (max-width: 350px){
+    .nav{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+    }
+
+    .logo{
+        margin-bottom: 15px;
+    }
+
+    #root{
+        padding-top: 100px
+    }
+}
