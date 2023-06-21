@@ -1,4 +1,8 @@
+config.ini
+venv
 .idea
+model
+results
 node_modules
 package-lock.json
 __MACOSX
