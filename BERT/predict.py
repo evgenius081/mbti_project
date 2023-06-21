@@ -9,6 +9,7 @@ c2l = ClassLabel(names=[
 
 classificator = pipeline("text-classification", model="BERT/model", tokenizer="distilbert-base-uncased", framework="pt", top_k=16)
 
+
 def predict_for_texts(texts, verbose = False):
     # predict
     predictions = {}
