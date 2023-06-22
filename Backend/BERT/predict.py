@@ -2,16 +2,16 @@ from transformers import pipeline
 from datasets import ClassLabel
 
 c2l = ClassLabel(names=[
-                     "INTJ", "INTP", "ENTJ", "ENTP",
+                     "INTJ", "INTP", "ENTJ", "ENTP", 
                      "INFJ", "INFP", "ENFJ", "ENFP",
                      "ISTJ", "ISFJ", "ESTJ", "ESFJ",
                      "ISTP", "ISFP", "ESTP", "ESFP"])
 
-classificator = pipeline("text-classification", model="BERT/model", tokenizer="distilbert-base-uncased", framework="pt", top_k=16)
+classificator = pipeline("text-classification", model="./BERT/model", tokenizer="distilbert-base-uncased", framework="pt",
+                         top_k=16)
 
 
 def predict_for_texts(texts, verbose = False):
-    # predict
     predictions = {}
     batch_size = 512
     batches = [texts[i:i + batch_size] for i in range(0, len(texts), batch_size)]

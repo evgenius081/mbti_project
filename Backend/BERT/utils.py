@@ -8,4 +8,3 @@ def clean_text(text):
     words = " ".join(words)
     words = words.translate(words.maketrans('', '', string.punctuation))
     return words
-
