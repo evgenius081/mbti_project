@@ -10,6 +10,8 @@ export function TypeDescription(){
     let navigate = useNavigate()
     const {mbtiTypes} = useContext(Context);
 
+    console.log(mbtiTypes)
+
     let type_percents = Object.values(mbtiTypes).map(value => Object.values(value))
         .map(value => (value[1] / (value[0] + value[1])) * 50)
 

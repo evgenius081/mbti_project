@@ -113,30 +113,31 @@ export let typeDesciptions = {"intj": (<p className={styles.type_description_p}>
         ),
         "istp": (
             <p className={styles.type_description_p}>
-                The Myers-Briggs Type Indicator (MBTI) personality type <span className={"accent"}>INFJ</span> stands
-                for Introverted, Sensing, Thinking, and Perceiving. <span className={"accent"}>INFJ</span>s make up
-                around 5-6% of the population and are often referred to as "Craftspeople" or "Virtuosos."<br/><br/>
+                    The Myers-Briggs Type Indicator (MBTI) personality type <span className={"accent"}>ISTP</span>
+                    stands for Introverted, Sensing, Thinking, and Perceiving. <span className={"accent"}>ISTP</span>s
+                    make up around 5-6% of the population and are often referred to as "Craftspeople" or "Virtuosos."
+                    <br/><br/>
 
-                As an <span className={"accent"}>INFJ</span>, individuals tend to be analytical, logical, and
-                independent. They are often focused on understanding how things work and may enjoy taking things apart
-                and putting them back together. <span className={"accent"}>INFJ</span>s are often introverted,
-                preferring to spend time alone or with a small group of close friends or family members.<br/><br/>
+                    As an <span className={"accent"}>ISTP</span>, individuals tend to be analytical, logical, and
+                    independent. They are often focused on understanding how things work and may enjoy taking things
+                    apart and putting them back together. <span className={"accent"}>ISTP</span>s are often introverted,
+                    preferring to spend time alone or with a small group of close friends or family members.<br/><br/>
 
-                <span className={"accent"}>INFJ</span>s are also known for their focus on the present moment and their
-                ability to respond quickly and effectively to their environment. They may be skilled at troubleshooting
-                and may enjoy working with their hands. <span className={"accent"}>INFJ</span>s often have a strong
-                sense of curiosity and may enjoy exploring new ideas or experiences.<br/><br/>
+                    <span className={"accent"}>ISTP</span>s are also known for their focus on the present moment and
+                    their ability to respond quickly and effectively to their environment. They may be skilled at
+                    troubleshooting and may enjoy working with their hands. <span className={"accent"}>ISTP</span>s
+                    often have a strong sense of curiosity and may enjoy exploring new ideas or experiences.<br/><br/>
 
-                Despite their independent and analytical nature, <span className={"accent"}>INFJ</span>s can be deeply
-                loyal and committed to those they care about. They may struggle with expressing their emotions to
-                others, but may show their affection through actions rather than words. They may also enjoy taking risks
-                and may be drawn to high-adrenaline activities like extreme sports.<br/><br/>
+                    Despite their independent and analytical nature, <span className={"accent"}>ISTP</span>s can be
+                    deeply loyal and committed to those they care about. They may struggle with expressing their
+                    emotions to others, but may show their affection through actions rather than words. They may also
+                    enjoy taking risks and may be drawn to high-adrenaline activities like extreme sports.<br/><br/>
 
-                Overall, <span className={"accent"}>INFJ</span>s are analytical, independent, and adventurous
-                individuals who value competence, practicality, and self-reliance. They are often focused on
-                understanding the present moment and may be skilled at troubleshooting and problem-solving. While they
-                may struggle with expressing their emotions or forming deep emotional connections with others, they can
-                be deeply loyal and committed to those they care about.<br/><br/>
+                    Overall, <span className={"accent"}>ISTP</span>s are analytical, independent, and adventurous
+                    individuals who value competence, practicality, and self-reliance. They are often focused on
+                    understanding the present moment and may be skilled at troubleshooting and problem-solving. While
+                    they may struggle with expressing their emotions or forming deep emotional connections with others,
+                    they can be deeply loyal and committed to those they care about.<br/><br/>
             </p>
         ),
         "isfp": (
