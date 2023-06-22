@@ -1,16 +1,16 @@
 @font-face {
   font-family: myBold;
-  src: url(OpenSauceSans-ExtraBold.ttf);
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-ExtraBold.ttf);
 }
 
 @font-face {
   font-family: myRegular;
-  src: url(OpenSauceSans-Regular.ttf);
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-Regular.ttf);
 }
 
 @font-face {
   font-family: myThin;
-  src: url(OpenSauceSans-Light.ttf);
+  src: url(../public/fonts/Open-Sauce-Sans/TTF/OpenSauceSans-Light.ttf);
 }
 
 body {
@@ -102,7 +102,7 @@ main{
   background: linear-gradient(
           rgba(0, 0, 0, 0.6),
           rgba(0, 0, 0, 0.6)
-  ), url("500.jpg") center no-repeat;
+  ), url("../public/img/500.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -110,7 +110,7 @@ main{
   background: linear-gradient(
           rgba(0, 0, 0, 0.6),
           rgba(0, 0, 0, 0.6)
-  ), url("404.png") center no-repeat;
+  ), url("../public/img/404.png") center no-repeat;
   background-size: cover;
 }
 
