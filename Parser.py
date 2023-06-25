@@ -49,14 +49,14 @@ class Parser:
             if author not in self.read_authors:
                 try:
                     self.get_user_comments(author, mbti)
-                    if self.text_count > self.texts_limit:
+                    if self.text_count > int(self.texts_limit):
                         break
                     self.get_user_posts(author, mbti)
-                    if self.text_count > self.texts_limit:
+                    if self.text_count > int(self.texts_limit):
                         break
                     print(f"Ended writing for user {author} with type {mbti}")
                 except Exception as e:
-                    print(f"Error occured with author {author}: {str(e)}")
+                    print(f"Error occurred with author {author}: {str(e)}")
 
         print(f"Finished writing {self.text_count} texts.")
 
@@ -71,7 +71,7 @@ class Parser:
     def write_text(self, username, mbti_type, texts, text_type):
         f = open(self.text_filename, "a", encoding="UTF8")
         for text in texts:
-            if self.text_count < self.texts_limit:
+            if self.text_count < int(self.texts_limit):
                 if text_type == "post":
                     txt = self.map_symbols(text.selftext)
                     if self.check_text(txt):
@@ -116,7 +116,7 @@ class Parser:
         for banned_word in self.banned_words:
             if banned_word in text:
                 return False
-        if text == "" or len(text) < self.min_text_length:
+        if text == "" or len(text) < int(self.min_text_length):
             return False
         return True
 
@@ -185,7 +185,7 @@ class Parser:
     def count_type_limits(self):
         self.count_author_stat()
         for stat in self.stats:
-            self.type_limits.append(max([i[0] for i in self.stats]) * self.max_limit_for_author / stat[0])
+            self.type_limits.append(max([i[0] for i in self.stats]) * int(self.max_limit_for_author) / stat[0])
 
     def count_text_stat(self):
         f = open(self.text_filename, "r", encoding="UTF8")
