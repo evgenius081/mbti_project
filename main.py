@@ -17,6 +17,7 @@ def main():
     parser.count_type_limits()
     parser.get_users_texts()
     parser.clear_file_with_texts()
+    parser.to_scv()
 
 
 if __name__ == '__main__':

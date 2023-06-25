@@ -16,6 +16,7 @@ class Parser:
         self.types = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
         self.author_filename = "authors.txt"
         self.text_filename = "texts.txt"
+        self.csv_filename = "dataset.csv"
         self.banned_words = ["https://", "[removed]"]
         self.symbol_mapper = [["*", ""], ["\\", " "], ["|", ""], ["\n", " "], ["#", ""], ["\"", ""], ["  ", " "]]
         amounts = config_object["AMOUNTS"]
@@ -206,4 +207,18 @@ class Parser:
         for stat in self.stats:
             print(self.types[self.stats.index(stat)] + "    " + str(round(stat[0] * 100/sum([i[0] for i in self.stats]), 2))
                   + "%      " + str(round(stat[1] * 100/sum([i[1] for i in self.stats]), 2)) + "%")
+
+    def to_scv(self):
+        source = open(self.text_filename, "r", encoding="UTF8")
+        dest = open(self.csv_filename, "w", encoding="UTF8")
+
+        dest.write("type,posts")
+
+        for line in source:
+            parts = line.split("|")
+            text = parts[2].replace("\n", "")
+            dest.write(f"{parts[1]},\"{text}\"\n")
+
+        dest.close()
+        source.close()
 
