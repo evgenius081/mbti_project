@@ -30,4 +30,4 @@ Project requirments:
 
 4. run `main.py` using your installed python interpreter (according to your OS) od IDE.
 
-As a result after ~10 hours (for examplary settings in config.ini file) you will get `authors.txt`, `texts.txt` files and stats for taken users and texts. In authors.txt authors of comments can be found as `User ID|MBTI type|User nickname`. In texts there are texts written by these users as `User ID|MBTI type|Text`.
+As a result after ~10 hours (for examplary settings in config.ini file) you will get `authors.txt`, `texts.txt` files and stats for taken users and texts. In authors.txt authors of comments can be found as `User ID|MBTI type|User nickname`. In texts there are texts written by these users as `User ID|MBTI type|Text`. You will also get `dataset.csv` file suitable for BERT training programm.
