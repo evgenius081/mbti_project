@@ -1,10 +1,7 @@
-import csv
-import torch
-from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForSequenceClassification, TrainingArguments, \
-    Trainer, TFAutoModelForSequenceClassification, TFTrainer, TFTrainingArguments
+from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForSequenceClassification, \
+    TrainingArguments, Trainer
 from datasets import load_dataset, SplitGenerator, Split, ClassLabel, load_metric
 import numpy as np
-from utils import clean_text
 
 c2l = ClassLabel(names=[
                      "INTJ", "INTP", "ENTJ", "ENTP", 
@@ -12,7 +9,7 @@ c2l = ClassLabel(names=[
                      "ISTJ", "ISFJ", "ESTJ", "ESFJ",
                      "ISTP", "ISFP", "ESTP", "ESFP"])
 
-dataset_file="texts_learn.csv"
+dataset_file = "texts_learn.csv"
 
 dataset = load_dataset("csv", data_files=dataset_file)['train']
 dataset = dataset.train_test_split(test_size=0.2)
@@ -20,11 +17,13 @@ print(dataset)
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
+
 def preprocess_function(batch):
     # clean text
     tokenized = tokenizer(batch["posts"], truncation=True)
     tokenized["label"] = c2l.str2int(batch["type"])
     return tokenized
+
 
 tokenized_set = dataset.map(preprocess_function, batched=True)
 
@@ -33,11 +32,13 @@ data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=len(c2l.names))
 
 metric = load_metric("accuracy")
- 
+
+
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
+
 
 training_args = TrainingArguments(
     output_dir="./results",
@@ -50,8 +51,6 @@ training_args = TrainingArguments(
 
 print(tokenized_set['train'][0])
 print(tokenized_set['test'][0])
-
-
 
 trainer = Trainer(
     model=model,
