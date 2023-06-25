@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForSequenceClassification, \
     TrainingArguments, Trainer
-from datasets import load_dataset, SplitGenerator, Split, ClassLabel, load_metric
+from datasets import load_dataset, ClassLabel, load_metric
 import numpy as np
 
 c2l = ClassLabel(names=[
@@ -47,6 +47,7 @@ training_args = TrainingArguments(
     per_device_eval_batch_size=16,
     num_train_epochs=5,
     weight_decay=0.01,
+    save_strategy="no"
 )
 
 print(tokenized_set['train'][0])
