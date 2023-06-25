@@ -9,7 +9,7 @@ c2l = ClassLabel(names=[
                      "ISTJ", "ISFJ", "ESTJ", "ESFJ",
                      "ISTP", "ISFP", "ESTP", "ESFP"])
 
-dataset_file = "texts_learn.csv"
+dataset_file = "dataset.csv"
 
 dataset = load_dataset("csv", data_files=dataset_file)['train']
 dataset = dataset.train_test_split(test_size=0.2)
